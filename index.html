@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+  <div data-tauri-drag-region class="titlebar">
+    <div>
+      <div class="titlebar-button" id="titlebar-hamburger">
+        <img
+                src="https://api.iconify.design/mdi:menu.svg"
+                alt="menu"
+        />
+      </div>
+    </div>
+    <div>
+      <div class="titlebar-button" id="titlebar-minimize">
+        <img
+                src="https://api.iconify.design/mdi:window-minimize.svg"
+                alt="minimize"
+        />
+      </div>
+      <div class="titlebar-button" id="titlebar-close">
+        <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
+      </div>
+    </div>
+  </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  <script type="module">
+    import { appWindow } from '@tauri-apps/api/window'
+    appWindow.setDecorations(false);
+    document
+            .getElementById('titlebar-minimize')
+            .addEventListener('click', () => {
+              console.log('got it')
+              appWindow.minimize()
+            })
+    document
+            .getElementById('titlebar-close')
+            .addEventListener('click', () => appWindow.close())
+  </script>
+  </body>
+</html>
